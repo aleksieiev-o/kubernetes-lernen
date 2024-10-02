@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kuber-r-set
+spec:
+  replicas: 4
+  selector:
+    matchExpressions:
+    - key: type
+      operator: In
+      values:
+        - test1
+        - test2
+    - key: env
+      operator: Exists
+  template:
+    metadata:
+      labels:
+        type: test1
+        env: dev
+    spec:
+      containers:
+        - name: kuber-r-set
+          image: bakavets/kuber:v1.0
+          ports:
+            - containerPort: 8000

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-deploy
+spec:
+  replicas: 3
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: kuber-label
+  template:
+    metadata:
+      labels:
+        app: kuber-label
+    spec:
+      containers:
+      - name: kuber-deploy
+        image: bakavets/kuber:v1.0
+        ports:
+        - containerPort: 8000
