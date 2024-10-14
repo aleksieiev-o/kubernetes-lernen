@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-with-config
+  labels:
+    app: web
+spec:
+  containers:
+  - name: evn
+    image: nicholasdille/nginx-hello
+    env:
+    - name: ENV_SECRET
+      valueFrom:
+        configMapKeyRef:
+          name: myconfigmap
+          key: testKey

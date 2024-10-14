@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfigmap
+data:
+  testKey: testValue
+  multiplyData: |
+    linie1
+    linie2
+    linie3
